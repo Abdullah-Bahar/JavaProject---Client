@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaProject---Client", "JavaProject---Client.csproj", "{4F32FB68-FF1B-4466-9185-7B58A4FFBEA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaProject---Client", "JavaProject---Client.csproj", "{4F32FB68-FF1B-4466-9185-7B58A4FFBEA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaProject---Server", "..\JavaProject---Server\JavaProject---Server.csproj", "{503164C6-7BFC-4C15-B8BD-C1F25C7466F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4F32FB68-FF1B-4466-9185-7B58A4FFBEA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F32FB68-FF1B-4466-9185-7B58A4FFBEA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F32FB68-FF1B-4466-9185-7B58A4FFBEA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{503164C6-7BFC-4C15-B8BD-C1F25C7466F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{503164C6-7BFC-4C15-B8BD-C1F25C7466F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{503164C6-7BFC-4C15-B8BD-C1F25C7466F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{503164C6-7BFC-4C15-B8BD-C1F25C7466F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
