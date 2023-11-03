@@ -24,5 +24,6 @@ namespace JavaProject___Client.MVVM.View
         {
             InitializeComponent();
         }
+
     }
 }

@@ -21,7 +21,7 @@
                 MouseDown="Border_MouseDown">
 
             <Grid HorizontalAlignment="Stretch">
-                <Label Content="ChatApp"
+                <Label Content="JavaProject"
                        Foreground="Gray"
                        FontWeight="SemiBold"/>
 

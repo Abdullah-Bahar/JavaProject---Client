@@ -17,7 +17,14 @@
             </TextBlock>
             <Button Content="Go To Login"
                     Command="{Binding NavigateToLoginCommand}">
+            </Button>
+            <TextBox x:Name="UsernameBox" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="0,5,0,0">
                 
+            </TextBox>
+            <Button x:Name="ConnectButton" Content="ConnectServer"
+                    Command="{Binding ConnectToServer}"
+                    Margin="0,2,0,0">
             </Button>
         </StackPanel>
     </Grid>
