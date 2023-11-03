@@ -10,23 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace JavaProject___Client.MVVM.View
 {
     /// <summary>
-    /// LoginWindow.xaml etkileşim mantığı
+    /// ProfileView.xaml etkileşim mantığı
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class ProfileView : UserControl
     {
-        public LoginWindow()
+        public ProfileView()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

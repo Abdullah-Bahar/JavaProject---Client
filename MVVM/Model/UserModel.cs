@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,5 +9,11 @@ namespace JavaProject___Client.MVVM.Model
 {
     internal class UserModel
     {
+        public string Username { get; set; }
+        public string UID { get; set; }
+        public string ImageSource { get; set; }
+        public ObservableCollection<MessageModel> Messages { get; set; }
+        public string LastMessage => Messages.Last().Message;
+        public string LastMessageUser => Messages.Last().Username;
     }
 }

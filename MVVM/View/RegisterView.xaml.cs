@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace JavaProject___Client.MVVM.View
 {
     /// <summary>
-    /// RegisterWindow.xaml etkileşim mantığı
+    /// RegisterView.xaml etkileşim mantığı
     /// </summary>
-    public partial class RegisterWindow : Window
+    public partial class RegisterView : UserControl
     {
-        public RegisterWindow()
+        public RegisterView()
         {
             InitializeComponent();
         }

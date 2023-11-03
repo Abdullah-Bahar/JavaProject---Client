@@ -5,9 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JavaProject___Client.MVVM.ViewModel
+namespace JavaProject___Client.Core
 {
-    internal class RegisterVİewModel : ObservableObject
+    public abstract class ViewModel : ObservableObject
     {
+
     }
 }

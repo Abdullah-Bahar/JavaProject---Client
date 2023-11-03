@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace JavaProject___Client.MVVM.View
 {
     /// <summary>
-    /// ProfileWindow.xaml etkileşim mantığı
+    /// CommunityView.xaml etkileşim mantığı
     /// </summary>
-    public partial class ProfileWindow : Window
+    public partial class CommunityView : UserControl
     {
-        public ProfileWindow()
+        public CommunityView()
         {
             InitializeComponent();
         }

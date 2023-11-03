@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JavaProject___Client.MVVM.ViewModel
 {
-    internal class ProfileViewModel : Core.ViewModel
+    class CommunityViewModel : Core.ViewModel
     {
 
         private INavigationService _navigation;
@@ -21,15 +21,16 @@ namespace JavaProject___Client.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-        public RelayCommand NavigateToRegisterCommand { get; set; }
-        public ProfileViewModel(INavigationService navService)
+        public RelayCommand NavigateToProfileCommand { get; set; }
+        public CommunityViewModel(INavigationService navService)
         {
             Navigation = navService;
-            NavigateToRegisterCommand = new RelayCommand(o =>
+            NavigateToProfileCommand = new RelayCommand(o =>
             {
-                Navigation.NavigateTo<RegisterViewModel>();
+                Navigation.NavigateTo<ProfileViewModel>();
             }, canExecute => true
             );
         }
+
     }
 }

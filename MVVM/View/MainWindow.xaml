@@ -6,14 +6,59 @@
         xmlns:local="clr-namespace:JavaProject___Client"
         xmlns:viewmodel="clr-namespace:JavaProject___Client.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
-        <viewmodel:MainViewModel/>
-    </Window.DataContext>
-    
+        Title="MainWindow" Height="450" Width="800"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip">
     <Grid>
-        <Button x:Name="ConnectToServerButton" Content="Sunucuya bağlan"
-                Command="{Binding ConnectToServer}" Click="ConnectServer_Button_Click">
-        </Button>
-    </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.ColumnSpan="2"
+            Background="#252525"
+                MouseDown="Border_MouseDown">
+
+            <Grid HorizontalAlignment="Stretch">
+                <Label Content="ChatApp"
+                       Foreground="Gray"
+                       FontWeight="SemiBold"/>
+
+                <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Button Width="20" Height="20"
+                            Content="━"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="ButtonMinimize_Click" 
+                            Margin="3,0,0,0"/>
+
+                    <Button Width="20" Height="20"
+                            Content="⬜"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="ButtonWindowState_Click"/>
+                    <Button Width="20" Height="20"
+                            Margin="0,0,1,0"
+                            Content="Х"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="ButtonClose_Click"/>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+        <Grid 
+            Background ="#2F3136"
+            Grid.Row ="1">
+            <ContentControl Content="{Binding Navigation.CurrentView}"/>
+            </Grid>
+       </Grid>
 </Window>

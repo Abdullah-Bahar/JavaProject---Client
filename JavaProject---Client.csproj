@@ -8,4 +8,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Localizr.Extensions.Microsoft.DependencyInjection" Version="1.1.0" />
+  </ItemGroup>
+
 </Project>

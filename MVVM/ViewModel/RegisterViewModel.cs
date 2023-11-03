@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace JavaProject___Client.MVVM.ViewModel
 {
-    internal class ProfileViewModel : Core.ViewModel
+    internal class RegisterViewModel : Core.ViewModel
     {
-
         private INavigationService _navigation;
         public INavigationService Navigation
         {
@@ -21,15 +21,18 @@ namespace JavaProject___Client.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-        public RelayCommand NavigateToRegisterCommand { get; set; }
-        public ProfileViewModel(INavigationService navService)
+
+        public RelayCommand NavigateToLoginCommand { get; set; }
+
+        public RegisterViewModel(INavigationService navService)
         {
             Navigation = navService;
-            NavigateToRegisterCommand = new RelayCommand(o =>
+            NavigateToLoginCommand = new RelayCommand(o =>
             {
-                Navigation.NavigateTo<RegisterViewModel>();
+                Navigation.NavigateTo<LoginViewModel>();
+
             }, canExecute => true
-            );
+            ); 
         }
     }
 }
