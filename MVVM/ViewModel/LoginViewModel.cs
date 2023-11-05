@@ -15,6 +15,7 @@ namespace JavaProject___Client.MVVM.ViewModel
 {
     public class LoginViewModel : Core.ViewModel
     {
+        public IDataService DataService { get; set; }
 
         private INavigationService _navigation;
         public INavigationService Navigation 
@@ -28,8 +29,9 @@ namespace JavaProject___Client.MVVM.ViewModel
         }
         public RelayCommand NavigateToCommunityCommand { get; set; }
 
-        public LoginViewModel(INavigationService navService)
+        public LoginViewModel(INavigationService navService, IDataService dataservice)
         {
+            DataService = dataservice;
             Navigation = navService;
             NavigateToCommunityCommand = new RelayCommand(o =>
             {

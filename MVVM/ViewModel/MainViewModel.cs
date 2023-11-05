@@ -12,6 +12,8 @@ namespace JavaProject___Client.MVVM.ViewModel
 {
     internal class MainViewModel : Core.ViewModel
     {
+        public IDataService DataService { get; set; }
+
         private INavigationService _navigation;
         public INavigationService Navigation
         {
@@ -23,8 +25,9 @@ namespace JavaProject___Client.MVVM.ViewModel
             }
         }
 
-        public MainViewModel(INavigationService navService)
+        public MainViewModel(INavigationService navService, IDataService dataservice)
         {
+            DataService = dataservice;
             Navigation = navService;
             Navigation.NavigateTo<RegisterViewModel>();
         }

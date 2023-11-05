@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JavaProject___Client"
         xmlns:viewmodel="clr-namespace:JavaProject___Client.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="JavaProject" Height="450" Width="800"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip">

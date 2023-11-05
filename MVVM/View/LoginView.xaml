@@ -15,6 +15,9 @@
                     FontSize="25">
 
             </TextBlock>
+            <Label Content="{Binding DataService.Username}" 
+                   Margin="0,30,0,0"
+                   FontSize="30"></Label>
             <Button Content="Go To Community"
                 Command="{Binding NavigateToCommunityCommand}">
 

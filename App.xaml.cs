@@ -31,6 +31,7 @@ namespace JavaProject___Client
             services.AddSingleton<RegisterViewModel>();
             services.AddSingleton<ProfileViewModel>();
             services.AddSingleton<CommunityViewModel>();
+            services.AddSingleton<IDataService, DataService>();
             services.AddSingleton<INavigationService, NavigationService>();
 
             services.AddSingleton<Func<Type, ViewModel>>(serviceProvider => viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));
