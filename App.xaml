@@ -23,7 +23,14 @@
         <DataTemplate DataType="{x:Type view:HomeView_Settings}">
             <view:HomeView_Settings/>
         </DataTemplate>
-        
+
+        <DataTemplate DataType="{x:Type view:HomeView_Users}">
+            <view:HomeView_Users/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type view:HomeView_Games}">
+            <view:HomeView_Games/>
+        </DataTemplate>
         
     </Application.Resources>
 </Application>
