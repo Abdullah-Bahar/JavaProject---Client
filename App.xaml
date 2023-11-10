@@ -4,8 +4,10 @@
              xmlns:local="clr-namespace:JavaProject___Client"
              xmlns:viewModel="clr-namespace:JavaProject___Client.MVVM.ViewModel"
              xmlns:view="clr-namespace:JavaProject___Client.MVVM.View">
+
     <Application.Resources>
 
+        
         <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
             <view:LoginView/>
         </DataTemplate>
@@ -18,9 +20,10 @@
             <view:RegisterView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:CommunityViewModel}">
-            <view:CommunityView/>
+        <DataTemplate DataType="{x:Type view:HomeView_Settings}">
+            <view:HomeView_Settings/>
         </DataTemplate>
+        
         
     </Application.Resources>
 </Application>

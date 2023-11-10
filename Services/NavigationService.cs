@@ -11,12 +11,25 @@ namespace JavaProject___Client.Services
     public interface INavigationService
     {
         ViewModel CurrentView { get; }
+        ViewModel LastView { get; }
         void NavigateTo<T>() where T : ViewModel;
     }
     internal class NavigationService : ObservableObject, INavigationService
     {
+
         private readonly Func<Type, ViewModel> _viewModelFactory;
         private ViewModel _currentView;
+        private ViewModel _lastView;
+
+        public ViewModel LastView
+        {
+            get => _lastView;
+            private set
+            {
+                _lastView = value;
+                OnPropertyChanged();
+            }
+        }
         public ViewModel CurrentView
         {
             get => _currentView;
@@ -34,6 +47,15 @@ namespace JavaProject___Client.Services
         {
             
             ViewModel viewModel = _viewModelFactory.Invoke(typeof(TViewModel));
+            if(CurrentView != null)
+            {
+                LastView = CurrentView;
+            }
+            else
+            {
+                LastView = viewModel;
+            }
+            
             CurrentView = viewModel;
         }   
     }

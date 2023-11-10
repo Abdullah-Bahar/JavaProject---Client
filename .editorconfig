@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# CS8618: Null atanamaz alan, oluşturucudan çıkış yaparken null olmayan bir değer içermelidir. Alanı null atanabilir olarak bildirmeyi düşünün.
+dotnet_diagnostic.CS8618.severity = none
+
+# CS8612: Türdeki başvuru türlerinin boş değer atanabilirliği, örtük olarak uygulanan üye ile eşleşmiyor.
+dotnet_diagnostic.CS8612.severity = none

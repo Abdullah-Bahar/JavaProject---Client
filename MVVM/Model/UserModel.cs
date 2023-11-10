@@ -13,7 +13,6 @@ namespace JavaProject___Client.MVVM.Model
         public string UID { get; set; }
         public string ImageSource { get; set; }
         public ObservableCollection<MessageModel> Messages { get; set; }
-        public string LastMessage => Messages.Last().Message;
-        public string LastMessageUser => Messages.Last().Username;
+        public MessageModel LastMessage => Messages.Last();
     }
 }

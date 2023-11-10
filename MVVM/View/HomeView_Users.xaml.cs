@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace JavaProject___Client.MVVM.View
 {
     /// <summary>
-    /// CommunityView.xaml etkileşim mantığı
+    /// HomeView_Users.xaml etkileşim mantığı
     /// </summary>
-    public partial class CommunityView : UserControl
+    public partial class HomeView_Users : UserControl
     {
-        public CommunityView()
+        public HomeView_Users()
         {
             InitializeComponent();
         }

@@ -1,24 +1,18 @@
-﻿using ChatApp.Core;
-using JavaProject___Client.Core;
-using JavaProject___Client.NET;
-using JavaProject___Client.Services;
+﻿using JavaProject___Client.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
 
 namespace JavaProject___Client.MVVM.ViewModel
 {
-    public class LoginViewModel : Core.ViewModel
+    internal class HomeViewModel_Games : Core.ViewModel
     {
         public IDataService DataService { get; set; }
 
         private INavigationService _navigation;
-        public INavigationService Navigation 
+        public INavigationService Navigation
         {
             get => _navigation;
             set
@@ -27,12 +21,10 @@ namespace JavaProject___Client.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-
-        public LoginViewModel(INavigationService navService, IDataService dataservice)
+        public HomeViewModel_Games(INavigationService navService, IDataService dataservice)
         {
             DataService = dataservice;
             Navigation = navService;
-
         }
     }
 }

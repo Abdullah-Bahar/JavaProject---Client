@@ -30,7 +30,11 @@ namespace JavaProject___Client
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<RegisterViewModel>();
             services.AddSingleton<ProfileViewModel>();
-            services.AddSingleton<CommunityViewModel>();
+
+            services.AddSingleton<HomeViewModel_Games>();
+            services.AddSingleton<HomeViewModel_Settings>();
+            services.AddSingleton<HomeViewModel_Users>();
+
             services.AddSingleton<IDataService, DataService>();
             services.AddSingleton<INavigationService, NavigationService>();
 

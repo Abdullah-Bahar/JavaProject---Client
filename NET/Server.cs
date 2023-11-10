@@ -89,7 +89,7 @@ namespace JavaProject___Client.NET
                                 break;
                         }
                     }
-                    catch (Exception ex)
+                    catch
                     {
                         //Eğer sunucu çökerse client kapanıyor
                         MessageBox.Show("Sunucu çöktü, uygulama kapanıyor... ");

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using JavaProject___Client.MVVM.View;
+using JavaProject___Client.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,11 +49,10 @@ namespace JavaProject___Client
             }
 
         }
-
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
-
             Application.Current.Shutdown();
         }
+
     }
 }

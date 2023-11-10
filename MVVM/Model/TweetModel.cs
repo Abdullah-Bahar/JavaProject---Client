@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace JavaProject___Client.MVVM.Model
 {
-    internal class MessageModel
+    class TweetModel
     {
         public string Username { get; set; }
         public string ImageSource { get; set; }
         public string Message { get; set; }
         public DateTime Time { get; set; }
-        public bool IsNativeOrigin { get; set; }
-        public bool? FirstMessage { get; set; }
     }
 }

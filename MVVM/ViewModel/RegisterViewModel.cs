@@ -44,8 +44,16 @@ namespace JavaProject___Client.MVVM.ViewModel
 
             ConnectToServer = new RelayCommand(o =>
             {
-                 _server.ConnectToServer(Username);
-                DataService.SetUsername(Username);
+                if (Username != null)
+                {
+                    _server.ConnectToServer(Username);
+                    DataService.SetUsername(Username);
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a username");
+                }
+                
             }, canExecute => true
             );
         }
