@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JavaProject___Client.MVVM.ViewModel
 {
-    internal class HomeViewModel_Games : Core.ViewModel
+    internal class HomeViewModelUsers : Core.ViewModel
     {
         public IDataService DataService { get; set; }
 
@@ -21,10 +21,11 @@ namespace JavaProject___Client.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-        public HomeViewModel_Games(INavigationService navService, IDataService dataservice)
+        public HomeViewModelUsers(INavigationService navService, IDataService dataservice)
         {
             DataService = dataservice;
             Navigation = navService;
         }
+
     }
 }

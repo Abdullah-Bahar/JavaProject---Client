@@ -4,7 +4,7 @@ using System.IO;
 
 namespace JavaProject___Server.NET.IO
 {
-    internal class PacketReader : BinaryReader
+    public class PacketReader : BinaryReader
     {
         private NetworkStream _ns;
         public PacketReader(NetworkStream ns) : base(ns)

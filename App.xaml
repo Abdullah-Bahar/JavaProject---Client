@@ -3,34 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:JavaProject___Client"
              xmlns:viewModel="clr-namespace:JavaProject___Client.MVVM.ViewModel"
-             xmlns:view="clr-namespace:JavaProject___Client.MVVM.View">
+             xmlns:view="clr-namespace:JavaProject___Client.MVVM.View"
+             xmlns:themes="clr-namespace:JavaProject___Client.Themes">
+
 
     <Application.Resources>
+        <ResourceDictionary>
+            
+            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+                <view:LoginView/>
+            </DataTemplate>
 
-        
-        <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
-            <view:LoginView/>
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ProfileViewModel}">
+                <view:ProfileView/>
+            </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:ProfileViewModel}">
-            <view:ProfileView/>
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
+                <view:RegisterView/>
+            </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
-            <view:RegisterView/>
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModelSettings}">
+                <view:HomeViewSettings/>
+            </DataTemplate>
 
-        <DataTemplate DataType="{x:Type view:HomeView_Settings}">
-            <view:HomeView_Settings/>
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModelUsers}">
+                <view:HomeViewUsers/>
+            </DataTemplate>
 
-        <DataTemplate DataType="{x:Type view:HomeView_Users}">
-            <view:HomeView_Users/>
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModelGames}">
+                <view:HomeViewGames/>
+            </DataTemplate>
 
-        <DataTemplate DataType="{x:Type view:HomeView_Games}">
-            <view:HomeView_Games/>
-        </DataTemplate>
-        
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

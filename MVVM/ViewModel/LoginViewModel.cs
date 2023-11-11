@@ -5,6 +5,7 @@ using JavaProject___Client.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,10 @@ namespace JavaProject___Client.MVVM.ViewModel
 {
     public class LoginViewModel : Core.ViewModel
     {
+        public string Email { get; set; }
+        public string Password { get; set; }
+
+        private Server _server;
         public IDataService DataService { get; set; }
 
         private INavigationService _navigation;
@@ -27,12 +32,48 @@ namespace JavaProject___Client.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+        public void LoginCorrect()
+        {
+            Navigation.NavigateTo<HomeViewModelGames>();
+        }
+        public void LoginFailed()
+        {
+            MessageBox.Show("Login failed");
+        }
+        public RelayCommand Login { get; set; }
+
+        public RelayCommand NavigatoToRegister { get; set; }
 
         public LoginViewModel(INavigationService navService, IDataService dataservice)
         {
             DataService = dataservice;
             Navigation = navService;
 
+            _server = new Server();
+            DataService.SetServer(_server);
+
+            Login = new RelayCommand(o =>
+            {
+                if (Email != null && Password != null)
+                {
+                    DataService.server.Login(Email, Password);
+                }
+                else
+                {
+                    MessageBox.Show("Please fill in all fields");
+                }
+                
+            }, canExecute => true
+            );
+
+            NavigatoToRegister = new RelayCommand(o =>
+            {
+                Navigation.NavigateTo<RegisterViewModel>();
+            }, canExecute => true
+            );
+
+            DataService.server.LoginCorrectEvent += LoginCorrect;
+            DataService.server.LoginFailEvent += LoginFailed;
         }
     }
 }

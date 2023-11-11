@@ -29,7 +29,7 @@ namespace JavaProject___Client.MVVM.ViewModel
         {
             DataService = dataservice;
             Navigation = navService;
-            Navigation.NavigateTo<RegisterViewModel>();
+            Navigation.NavigateTo<LoginViewModel>();
         }
     }
 }

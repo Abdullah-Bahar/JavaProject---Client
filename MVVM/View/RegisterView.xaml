@@ -4,28 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:JavaProject___Client.MVVM.View"
+             xmlns:themes="clr-namespace:JavaProject___Client.Themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="#2F3136">
+             Background="#2F3136"
+             >
     <Grid>
         <StackPanel VerticalAlignment="Center"
                     HorizontalAlignment="Center">
             <TextBlock Text="Register"
                        Foreground="White"
                        FontSize="25">
-                
+
             </TextBlock>
-            <Button Content="Go To Login"
-                    Command="{Binding NavigateToLoginCommand}">
-            </Button>
             <TextBox x:Name="UsernameBox" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
-                     Margin="0,5,0,0">
-                
-            </TextBox>
-            <Button x:Name="ConnectButton" Content="ConnectServer"
-                    Command="{Binding ConnectToServer}"
-                    Margin="0,2,0,0">
-            </Button>
+                     Margin="0,5,0,0"/>
+            <TextBox x:Name="EmailBox" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
+            <themes:CustomPasswordBox x:Name="PasswordBox" Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button x:Name="ConnectButton" Content="Register"
+                    Command="{Binding RegisterToServer}"
+                    Margin="0,2,0,0"/>
+            <Button x:Name="Navigatetologin" Content="Giriş yapmak için tıkla"
+                    Command="{Binding NavigateToLogin}"
+                    Margin="0,2,0,0"/>
         </StackPanel>
     </Grid>
 </UserControl>
