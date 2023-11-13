@@ -9,7 +9,13 @@
 
     <Application.Resources>
         <ResourceDictionary>
-            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./Themes/Scrollbar.xaml"/>
+                <ResourceDictionary Source="./Themes/MessageBox.xaml"/>
+                <ResourceDictionary Source="./Themes/ContactCard.xaml"/>
+                <ResourceDictionary Source="./Themes/ChatItem.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
             <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
                 <view:LoginView/>
             </DataTemplate>
