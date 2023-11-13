@@ -11,6 +11,7 @@ namespace JavaProject___Client.MVVM.Model
         public string Username { get; set; }
         public string ImageSource { get; set; }
         public string Message { get; set; }
+        public int Like { get; set; }
         public DateTime Time { get; set; }
     }
 }

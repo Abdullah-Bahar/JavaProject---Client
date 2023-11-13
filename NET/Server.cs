@@ -45,7 +45,7 @@ namespace JavaProject___Client.NET
             {
                 try
                 {
-                    _client.Connect("127.0.0.1", 9001);
+                    _client.Connect("46.31.77.173", 9001);
                 }
                 catch
                 {
@@ -71,13 +71,11 @@ namespace JavaProject___Client.NET
             {
                 try
                 {
-                    _client.Connect("127.0.0.1", 9001);
+                    _client.Connect("46.31.77.173", 9001);
                 }
                 catch
                 {
-                    MessageBox.Show("Sunucu bulunumadı, uygulama kapanıyor...");
-                    Application.Current.Dispatcher.Invoke(() => Application.Current.Shutdown());
-                    return;
+                    MessageBox.Show("Sunucu ile iletişim kurulamıyor, daha sonra tekrar deneyin");
                 }
 
                 PacketReader = new PacketReader(_client.GetStream());
@@ -104,8 +102,7 @@ namespace JavaProject___Client.NET
                         switch (opcode)
                         {
                             case 0:
-                                bool RegisterStatus = bool.Parse(PacketReader.ReadMessage());
-                                if (RegisterStatus == true)
+                                if (bool.Parse(PacketReader.ReadMessage()) == true)
                                 {
                                     RegisterSuccessEvent?.Invoke();
                                 }
@@ -115,8 +112,7 @@ namespace JavaProject___Client.NET
                                 }
                                 break;
                             case 1:
-                                bool LoginStatus = bool.Parse(PacketReader.ReadMessage());
-                                if (LoginStatus == true)
+                                if (bool.Parse(PacketReader.ReadMessage()) == true)
                                 {
                                     LoginCorrectEvent?.Invoke();
                                 }
@@ -144,6 +140,5 @@ namespace JavaProject___Client.NET
                 }
             });
         }
-
     }
 }
