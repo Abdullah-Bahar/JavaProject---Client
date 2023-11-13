@@ -28,6 +28,9 @@ namespace JavaProject___Client.NET
         public event Action RegisterSuccessEvent;
         public event Action RegisterFailEvent;
 
+        public string Username;
+        public string UID;
+
         private static TcpClient _client = new TcpClient();
         public PacketReader PacketReader;
         public Server()
@@ -61,7 +64,6 @@ namespace JavaProject___Client.NET
             _client.Client.Send(RegisterPacket.GetPacketBytes());
         }
 
-
         //Servere giriş yapmak için kullanılan fonksiyon
         public void Login(string email, string password)
         {
@@ -87,6 +89,7 @@ namespace JavaProject___Client.NET
             loginPacket.WriteMessage(password);
             _client.Client.Send(loginPacket.GetPacketBytes());
         }
+
 
         //Sunucudan gelen paketleri okumak için kullanılan fonksiyon
         private void ReadPackets()
@@ -121,6 +124,10 @@ namespace JavaProject___Client.NET
                                 {
                                     LoginFailEvent?.Invoke();
                                 }
+                                break;
+                            case 2:
+                                Username = PacketReader.ReadMessage();
+                                UID = PacketReader.ReadMessage();
                                 break;
                             default:
                                 Console.WriteLine("Unknown opcode: " + opcode);

@@ -11,16 +11,24 @@ namespace JavaProject___Client.Services
     public interface IDataService
     {
         public string Username { get; set; }
+        public string UID { get; set; }
 
         public Server server { get; set; }
 
         void SetUsername(string username);
         void SetServer(Server server);
+        void SetUID(string uid);
     }
     internal class DataService : IDataService
     {
         public string Username { get; set; }
         public Server server { get; set; }
+        public string UID { get; set; }
+
+        public void SetUID(string uid)
+        {
+            UID = uid;
+        }
 
         public void SetUsername(string username)
         {
@@ -30,6 +38,5 @@ namespace JavaProject___Client.Services
         {
               this.server = server;
         }
-
     }
 }

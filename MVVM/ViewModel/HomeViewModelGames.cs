@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace JavaProject___Client.MVVM.ViewModel
 {
     internal class HomeViewModelGames : Core.ViewModel
     {
+        public string Username { get; set; }
+
+        public string UID { get; set; }
+
         public IDataService DataService { get; set; }
 
         private INavigationService _navigation;
@@ -25,6 +30,10 @@ namespace JavaProject___Client.MVVM.ViewModel
         {
             DataService = dataservice;
             Navigation = navService;
+            dataservice.SetUsername(dataservice.server.Username);
+            dataservice.SetUID(dataservice.server.UID);
+            Username = dataservice.Username;
+            UID = dataservice.UID;
         }
     }
 }

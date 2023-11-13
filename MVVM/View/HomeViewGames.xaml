@@ -8,6 +8,7 @@
              Background="#2F3136"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Label Content="{Binding Username}" FontSize="25"/>
+        <Label Content="{Binding UID}" FontSize="25" Margin="0,50,0,0"/>
     </Grid>
 </UserControl>
