@@ -87,6 +87,14 @@ namespace JavaProject___Client.NET
             loginPacket.WriteMessage(password);
             _client.Client.Send(loginPacket.GetPacketBytes());
         }
+        // OpCodes
+        //0 - Register
+        //1 - Login
+        //2 - Info
+        //3 - New Connection
+        //4 - Disconnect
+        //5 - Message - Group Message
+        //6 - Group Created
 
 
         //Sunucudan gelen paketleri okumak için kullanılan fonksiyon
@@ -125,6 +133,18 @@ namespace JavaProject___Client.NET
                                 Username = PacketReader.ReadMessage();
                                 UID = PacketReader.ReadMessage();
                                 break;
+                            case 3:
+                                UserConnectedEvent?.Invoke();
+                                break;
+                            case 4:
+                                UserDisconnectedEvent?.Invoke();
+                                break;
+                            case 5:
+                                MessageReceivedEvent?.Invoke();
+                                break;
+                            case 6:
+                                GroupCreatedEvent?.Invoke();
+                                break;
                             default:
                                 Console.WriteLine("Unknown opcode: " + opcode);
                                 break;
@@ -139,6 +159,30 @@ namespace JavaProject___Client.NET
                     }
                 }
             });
+        }
+        public void createGroup(string groupName, string clientIDS)
+        {
+            var packet = new PacketBuilder();
+            packet.WriteOpCode(6);
+            packet.WriteMessage(groupName);
+            packet.WriteMessage(clientIDS);
+            _client.Client.Send(packet.GetPacketBytes());
+        }
+        public void SendMessageToGroup(string message, string contactUID)
+        {
+            var packet = new PacketBuilder();
+            packet.WriteOpCode(10);
+            packet.WriteMessage(message);
+            packet.WriteMessage(contactUID);
+            _client.Client.Send(packet.GetPacketBytes());
+        }
+        public void SendMessageToUser(string message, string contactUID)
+        {
+            var packet = new PacketBuilder();
+            packet.WriteOpCode(5);
+            packet.WriteMessage(message);
+            packet.WriteMessage(contactUID);
+            _client.Client.Send(packet.GetPacketBytes());
         }
     }
 }
