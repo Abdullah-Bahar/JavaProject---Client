@@ -21,6 +21,7 @@ namespace JavaProject___Client.NET
         public event Action UserDisconnectedEvent;
         public event Action MessageReceivedEvent;
         public event Action GroupCreatedEvent;
+        public event Action MessageEvent;
 
         public event Action LoginCorrectEvent;
         public event Action LoginFailEvent;
@@ -45,7 +46,7 @@ namespace JavaProject___Client.NET
             {
                 try
                 {
-                    _client.Connect("127.0.0.1", 9001);
+                    _client.Connect("127.0.0.1", 9001);//46.31.77.173
                 }
                 catch
                 {
@@ -71,7 +72,7 @@ namespace JavaProject___Client.NET
             {
                 try
                 {
-                    _client.Connect("127.0.0.1", 9001);
+                    _client.Connect("127.0.0.1", 9001);//46.31.77.173
                 }
                 catch
                 {
@@ -144,6 +145,9 @@ namespace JavaProject___Client.NET
                                 break;
                             case 6:
                                 GroupCreatedEvent?.Invoke();
+                                break;
+                            case 7:
+                                MessageEvent?.Invoke();
                                 break;
                             default:
                                 Console.WriteLine("Unknown opcode: " + opcode);

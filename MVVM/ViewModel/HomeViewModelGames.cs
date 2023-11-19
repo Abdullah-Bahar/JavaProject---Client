@@ -12,6 +12,7 @@ namespace JavaProject___Client.MVVM.ViewModel
     {
         public string Username { get; set; }
 
+
         public string UID { get; set; }
 
         public IDataService DataService { get; set; }
@@ -34,6 +35,13 @@ namespace JavaProject___Client.MVVM.ViewModel
             dataservice.SetUID(dataservice.server.UID);
             Username = dataservice.Username;
             UID = dataservice.UID;
+            dataservice.server.MessageEvent += MessageEvent;
+        }
+
+        private void MessageEvent()
+        {
+            var result = DataService.server.PacketReader.ReadMessage();
+            MessageBox.Show(result);
         }
     }
 }
