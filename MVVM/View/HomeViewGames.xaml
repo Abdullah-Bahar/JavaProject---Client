@@ -10,5 +10,6 @@
     <Grid>
         <Label Content="{Binding Username}" FontSize="25"/>
         <Label Content="{Binding UID}" FontSize="25" Margin="0,50,0,0"/>
+        <Button Command="{Binding SendTestMessage}" Content="Test Mesajı yolla" Width="100" Height="20"></Button>
     </Grid>
 </UserControl>

@@ -21,7 +21,6 @@ namespace JavaProject___Client.NET
         public event Action UserDisconnectedEvent;
         public event Action MessageReceivedEvent;
         public event Action GroupCreatedEvent;
-        public event Action MessageEvent;
 
         public event Action LoginCorrectEvent;
         public event Action LoginFailEvent;
@@ -108,10 +107,13 @@ namespace JavaProject___Client.NET
                     try
                     {
                         var opcode = PacketReader.ReadByte();
+                        MessageBox.Show("Opcode: " + opcode);
                         switch (opcode)
                         {
                             case 0:
-                                if (bool.Parse(PacketReader.ReadMessage()) == true)
+                                MessageBox.Show("Register");
+                                var registerSuccess = PacketReader.ReadMessage();
+                                if (registerSuccess == "True")
                                 {
                                     RegisterSuccessEvent?.Invoke();
                                 }
@@ -121,7 +123,9 @@ namespace JavaProject___Client.NET
                                 }
                                 break;
                             case 1:
-                                if (bool.Parse(PacketReader.ReadMessage()) == true)
+                                MessageBox.Show("Login");
+                                var loginSuccess = PacketReader.ReadMessage();
+                                if (loginSuccess == "True")
                                 {
                                     LoginCorrectEvent?.Invoke();
                                 }
@@ -146,18 +150,15 @@ namespace JavaProject___Client.NET
                             case 6:
                                 GroupCreatedEvent?.Invoke();
                                 break;
-                            case 7:
-                                MessageEvent?.Invoke();
-                                break;
                             default:
                                 Console.WriteLine("Unknown opcode: " + opcode);
                                 break;
                         }
                     }
-                    catch
+                    catch(Exception e)
                     {
                         //Eğer sunucu çökerse client kapanıyor
-                        MessageBox.Show("Sunucu çöktü, uygulama kapanıyor... ");
+                        MessageBox.Show("Sunucu çöktü, uygulama kapanıyor... " + e);
                         Application.Current.Dispatcher.Invoke(() => Application.Current.Shutdown());
                         return;
                     }
@@ -172,20 +173,33 @@ namespace JavaProject___Client.NET
             packet.WriteMessage(clientIDS);
             _client.Client.Send(packet.GetPacketBytes());
         }
-        public void SendMessageToGroup(string message, string contactUID)
+
+        public void SendMessageToGroup(string message, string contactUID, string firstMessage)
         {
             var packet = new PacketBuilder();
             packet.WriteOpCode(10);
             packet.WriteMessage(message);
             packet.WriteMessage(contactUID);
+            packet.WriteMessage(firstMessage);
             _client.Client.Send(packet.GetPacketBytes());
         }
-        public void SendMessageToUser(string message, string contactUID)
+
+        public void SendMessageToUserTest()
+        {
+            var packet = new PacketBuilder();
+            packet.WriteOpCode(5);
+            packet.WriteMessage("Bu yazı PnterNN tarafından PnterNN2 adlı kullanıcıya gönderilmiştir");
+            packet.WriteMessage("192028f2-ba17-4270-8ad8-b595a1eb4fb9");
+            packet.WriteMessage("True");
+            _client.Client.Send(packet.GetPacketBytes());
+        }
+        public void SendMessageToUser(string message, string contactUID, string firstMessage)
         {
             var packet = new PacketBuilder();
             packet.WriteOpCode(5);
             packet.WriteMessage(message);
             packet.WriteMessage(contactUID);
+            packet.WriteMessage(firstMessage);
             _client.Client.Send(packet.GetPacketBytes());
         }
     }

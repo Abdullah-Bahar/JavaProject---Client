@@ -1,10 +1,14 @@
-﻿using JavaProject___Client.Services;
+﻿using ChatApp.Core;
+using JavaProject___Client.Services;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Interop;
 
 namespace JavaProject___Client.MVVM.ViewModel
 {
@@ -27,6 +31,9 @@ namespace JavaProject___Client.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        public RelayCommand SendTestMessage {get; set;}
+
         public HomeViewModelGames(INavigationService navService, IDataService dataservice)
         {
             DataService = dataservice;
@@ -35,13 +42,21 @@ namespace JavaProject___Client.MVVM.ViewModel
             dataservice.SetUID(dataservice.server.UID);
             Username = dataservice.Username;
             UID = dataservice.UID;
-            dataservice.server.MessageEvent += MessageEvent;
+            dataservice.server.MessageReceivedEvent += MessageReceivedEvent;
+
+            SendTestMessage = new RelayCommand(o =>
+            {
+                dataservice.server.SendMessageToUserTest();
+            });
         }
 
-        private void MessageEvent()
+        private void MessageReceivedEvent()
         {
-            var result = DataService.server.PacketReader.ReadMessage();
-            MessageBox.Show(result);
+            var message = DataService.server.PacketReader.ReadMessage();
+            var sender = DataService.server.PacketReader.ReadMessage();
+            var senderUID = DataService.server.PacketReader.ReadMessage();
+            MessageBox.Show(message + " " + sender + " " + senderUID);
+
         }
     }
 }
