@@ -1,6 +1,7 @@
 ﻿using System.Net.Sockets;
 using System.Text;
 using System.IO;
+using System;
 
 namespace JavaProject___Server.NET.IO
 {
@@ -18,7 +19,7 @@ namespace JavaProject___Server.NET.IO
             msgBuffer = new byte[length];
             _ns.Read(msgBuffer, 0, length);
 
-            var msg = Encoding.ASCII.GetString(msgBuffer);
+            var msg = Encoding.UTF8.GetString(msgBuffer);
             return msg;
         }
     }

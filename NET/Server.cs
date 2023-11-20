@@ -107,7 +107,6 @@ namespace JavaProject___Client.NET
                     try
                     {
                         var opcode = PacketReader.ReadByte();
-                        MessageBox.Show("Opcode: " + opcode);
                         switch (opcode)
                         {
                             case 0:
@@ -155,10 +154,10 @@ namespace JavaProject___Client.NET
                                 break;
                         }
                     }
-                    catch(Exception e)
+                    catch//(Exception e)
                     {
                         //Eğer sunucu çökerse client kapanıyor
-                        MessageBox.Show("Sunucu çöktü, uygulama kapanıyor... " + e);
+                        MessageBox.Show("Sunucu çöktü, uygulama kapanıyor... ");
                         Application.Current.Dispatcher.Invoke(() => Application.Current.Shutdown());
                         return;
                     }
