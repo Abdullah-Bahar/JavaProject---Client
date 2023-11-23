@@ -110,7 +110,6 @@ namespace JavaProject___Client.NET
                         switch (opcode)
                         {
                             case 0:
-                                MessageBox.Show("Register");
                                 var registerSuccess = PacketReader.ReadMessage();
                                 if (registerSuccess == "True")
                                 {
@@ -122,7 +121,6 @@ namespace JavaProject___Client.NET
                                 }
                                 break;
                             case 1:
-                                MessageBox.Show("Login");
                                 var loginSuccess = PacketReader.ReadMessage();
                                 if (loginSuccess == "True")
                                 {
@@ -189,7 +187,7 @@ namespace JavaProject___Client.NET
             packet.WriteOpCode(5);
             packet.WriteMessage("Bu yazı PnterNN tarafından PnterNN2 adlı kullanıcıya gönderilmiştir");
             packet.WriteMessage("192028f2-ba17-4270-8ad8-b595a1eb4fb9");
-            packet.WriteMessage("True");
+            packet.WriteMessage("1");
             _client.Client.Send(packet.GetPacketBytes());
         }
         public void SendMessageToUser(string message, string contactUID, string firstMessage)
