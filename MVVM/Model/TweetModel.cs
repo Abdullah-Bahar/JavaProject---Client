@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JavaProject___Client.MVVM.Model
 {
-    class TweetModel
+    public class TweetModel
     {
         public string Username { get; set; }
         public string ImageSource { get; set; }

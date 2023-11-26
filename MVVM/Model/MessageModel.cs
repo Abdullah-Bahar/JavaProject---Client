@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JavaProject___Client.MVVM.Model
 {
-    internal class MessageModel
+    public class MessageModel
     {
         public string Username { get; set; }
         public string ImageSource { get; set; }

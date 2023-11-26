@@ -106,6 +106,14 @@ namespace JavaProject___Client.NET
                 {
                     try
                     {
+                        // opcode
+                        // 0 - register
+                        // 1 - login
+                        // 2 - info
+                        // 3 - new connection
+                        // 4 - disconnect
+                        // 5 - message
+                        // 6 - group created
                         var opcode = PacketReader.ReadByte();
                         switch (opcode)
                         {
@@ -136,7 +144,9 @@ namespace JavaProject___Client.NET
                                 UID = PacketReader.ReadMessage();
                                 break;
                             case 3:
+                                MessageBox.Show("Kullanıcı bağlanma isteği sayfaya yollanıyor");
                                 UserConnectedEvent?.Invoke();
+                                MessageBox.Show("Kullanıcı bağlanma isteği sayfaya yollandı");
                                 break;
                             case 4:
                                 UserDisconnectedEvent?.Invoke();
@@ -152,10 +162,10 @@ namespace JavaProject___Client.NET
                                 break;
                         }
                     }
-                    catch//(Exception e)
+                    catch(Exception e)
                     {
                         //Eğer sunucu çökerse client kapanıyor
-                        MessageBox.Show("Sunucu çöktü, uygulama kapanıyor... ");
+                        MessageBox.Show("Sunucu çöktü, uygulama kapanıyor... " + e.Message);
                         Application.Current.Dispatcher.Invoke(() => Application.Current.Shutdown());
                         return;
                     }
@@ -170,27 +180,7 @@ namespace JavaProject___Client.NET
             packet.WriteMessage(clientIDS);
             _client.Client.Send(packet.GetPacketBytes());
         }
-
-        public void SendMessageToGroup(string message, string contactUID, string firstMessage)
-        {
-            var packet = new PacketBuilder();
-            packet.WriteOpCode(10);
-            packet.WriteMessage(message);
-            packet.WriteMessage(contactUID);
-            packet.WriteMessage(firstMessage);
-            _client.Client.Send(packet.GetPacketBytes());
-        }
-
-        public void SendMessageToUserTest()
-        {
-            var packet = new PacketBuilder();
-            packet.WriteOpCode(5);
-            packet.WriteMessage("Bu yazı PnterNN tarafından PnterNN2 adlı kullanıcıya gönderilmiştir");
-            packet.WriteMessage("192028f2-ba17-4270-8ad8-b595a1eb4fb9");
-            packet.WriteMessage("1");
-            _client.Client.Send(packet.GetPacketBytes());
-        }
-        public void SendMessageToUser(string message, string contactUID, string firstMessage)
+        public void SendMessage(string message, string contactUID, string firstMessage)
         {
             var packet = new PacketBuilder();
             packet.WriteOpCode(5);

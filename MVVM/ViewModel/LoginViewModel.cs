@@ -34,7 +34,7 @@ namespace JavaProject___Client.MVVM.ViewModel
         }
         public void LoginCorrect()
         {
-            Navigation.NavigateTo<HomeViewModelGames>();
+            Navigation.NavigateTo<HomeViewModelTweet>();
         }
         public void LoginFailed()
         {

@@ -34,7 +34,7 @@ namespace JavaProject___Client.MVVM.ViewModel
         public void RegisterSuccess()
         {
             MessageBox.Show("Kayıt olundu, yönlendiriliyorsunuz...");
-            Navigation.NavigateTo<HomeViewModelGames>();
+            Navigation.NavigateTo<HomeViewModelTweet>();
         }
 
         public void RegisterFailed()

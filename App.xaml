@@ -28,16 +28,16 @@
                 <view:RegisterView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:HomeViewModelSettings}">
-                <view:HomeViewSettings/>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModelProfile}">
+                <view:HomeViewProfile/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModelUsers}">
                 <view:HomeViewUsers/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:HomeViewModelGames}">
-                <view:HomeViewGames/>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModelTweet}">
+                <view:HomeViewTweet/>
             </DataTemplate>
 
         </ResourceDictionary>

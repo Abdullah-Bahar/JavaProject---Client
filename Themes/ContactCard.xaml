@@ -30,7 +30,7 @@
                             <StackPanel>
                                 <Label Content="{Binding Username}"
                                        Foreground="White"/>
-                                <Label Content="{Binding LastMessage}"
+                                <Label Content="{Binding LastMessage.Message, UpdateSourceTrigger=PropertyChanged}"
                                        Foreground="Gray"
                                        FontSize="10"/>
 

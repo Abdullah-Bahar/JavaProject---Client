@@ -18,9 +18,9 @@ namespace JavaProject___Client.MVVM.View
     /// <summary>
     /// HomeView_Settings.xaml etkileşim mantığı
     /// </summary>
-    public partial class HomeViewSettings : UserControl
+    public partial class HomeViewProfile : UserControl
     {
-        public HomeViewSettings()
+        public HomeViewProfile()
         {
             InitializeComponent();
         }

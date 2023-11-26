@@ -1,8 +1,12 @@
 ﻿using ChatApp.Core;
+using JavaProject___Client.Core;
+using JavaProject___Client.MVVM.Model;
+using JavaProject___Client.NET;
 using JavaProject___Client.Services;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -12,11 +16,10 @@ using System.Windows.Interop;
 
 namespace JavaProject___Client.MVVM.ViewModel
 {
-    internal class HomeViewModelGames : Core.ViewModel
+    internal class HomeViewModelTweet : Core.ViewModel
     {
         public string Username { get; set; }
-
-
+        private Server _server;
         public string UID { get; set; }
 
         public IDataService DataService { get; set; }
@@ -32,30 +35,36 @@ namespace JavaProject___Client.MVVM.ViewModel
             }
         }
 
-        public RelayCommand SendTestMessage {get; set;}
+        public RelayCommand NavigateToHomeUser {get; set;}
 
-        public HomeViewModelGames(INavigationService navService, IDataService dataservice)
+        private void UserConnected()
+        {
+            string username = _server.PacketReader.ReadMessage();
+            string uid = _server.PacketReader.ReadMessage();
+            MessageBox.Show("Tweet sayfasından kod geldi");
+        }
+
+
+        public HomeViewModelTweet(INavigationService navService, IDataService dataservice)
         {
             DataService = dataservice;
             Navigation = navService;
+            _server = dataservice.server;
+            
+            dataservice.Users = new ObservableCollection<UserModel>();
+            dataservice.Messages = new ObservableCollection<MessageModel>();
+            dataservice.Tweets = new ObservableCollection<TweetModel>();
+
             dataservice.SetUsername(dataservice.server.Username);
             dataservice.SetUID(dataservice.server.UID);
             Username = dataservice.Username;
             UID = dataservice.UID;
-            dataservice.server.MessageReceivedEvent += MessageReceivedEvent;
 
-            SendTestMessage = new RelayCommand(o =>
+
+            NavigateToHomeUser = new RelayCommand(o =>
             {
-                dataservice.server.SendMessageToUserTest();
+                Navigation.NavigateTo<HomeViewModelUsers>();
             });
-        }
-
-        private void MessageReceivedEvent()
-        {
-            var message = DataService.server.PacketReader.ReadMessage();
-            var sender = DataService.server.PacketReader.ReadMessage();
-            var senderUID = DataService.server.PacketReader.ReadMessage();
-            MessageBox.Show(message + " " + sender + " " + senderUID);
 
         }
     }
