@@ -45,7 +45,7 @@ namespace JavaProject___Client.NET
             {
                 try
                 {
-                    _client.Connect("127.0.0.1", 9001);//46.31.77.173
+                    _client.Connect("46.31.77.173", 9001);//46.31.77.173
                 }
                 catch
                 {
@@ -71,7 +71,7 @@ namespace JavaProject___Client.NET
             {
                 try
                 {
-                    _client.Connect("127.0.0.1", 9001);//46.31.77.173
+                    _client.Connect("46.31.77.173", 9001);//46.31.77.173
                 }
                 catch
                 {
@@ -144,9 +144,7 @@ namespace JavaProject___Client.NET
                                 UID = PacketReader.ReadMessage();
                                 break;
                             case 3:
-                                MessageBox.Show("Kullanıcı bağlanma isteği sayfaya yollanıyor");
                                 UserConnectedEvent?.Invoke();
-                                MessageBox.Show("Kullanıcı bağlanma isteği sayfaya yollandı");
                                 break;
                             case 4:
                                 UserDisconnectedEvent?.Invoke();
@@ -162,10 +160,10 @@ namespace JavaProject___Client.NET
                                 break;
                         }
                     }
-                    catch(Exception e)
+                    catch
                     {
                         //Eğer sunucu çökerse client kapanıyor
-                        MessageBox.Show("Sunucu çöktü, uygulama kapanıyor... " + e.Message);
+                        MessageBox.Show("Sunucu çöktü, uygulama kapanıyor... ");
                         Application.Current.Dispatcher.Invoke(() => Application.Current.Shutdown());
                         return;
                     }

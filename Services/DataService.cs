@@ -18,10 +18,6 @@ namespace JavaProject___Client.Services
         public ObservableCollection<MessageModel> Messages { get; set; }
         public ObservableCollection<TweetModel> Tweets { get; set; }
         public Server server { get; set; }
-
-        void SetUsername(string username);
-        void SetServer(Server server);
-        void SetUID(string uid);
     }
     internal class DataService : IDataService
     {
@@ -34,18 +30,6 @@ namespace JavaProject___Client.Services
         public ObservableCollection<MessageModel> Messages { get; set; }
         public ObservableCollection<TweetModel> Tweets { get; set; }
 
-        public void SetUID(string uid)
-        {
-            UID = uid;
-        }
-
-        public void SetUsername(string username)
-        {
-            Username = username;
-        }
-        public void SetServer(Server server)
-        {
-              this.server = server;
-        }
+        
     }
 }

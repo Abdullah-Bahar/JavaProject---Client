@@ -34,6 +34,8 @@ namespace JavaProject___Client.MVVM.ViewModel
         }
         public void LoginCorrect()
         {
+            Navigation.NavigateTo<HomeViewModelProfile>();
+            Navigation.NavigateTo<HomeViewModelUsers>();
             Navigation.NavigateTo<HomeViewModelTweet>();
         }
         public void LoginFailed()
@@ -50,7 +52,7 @@ namespace JavaProject___Client.MVVM.ViewModel
             Navigation = navService;
 
             _server = new Server();
-            DataService.SetServer(_server);
+            DataService.server = _server;
 
             Login = new RelayCommand(o =>
             {

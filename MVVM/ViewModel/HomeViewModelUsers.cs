@@ -31,6 +31,8 @@ namespace JavaProject___Client.MVVM.ViewModel
         //****************************************************************
         public String Username { get; set; }
 
+        public string UID { get; set; }
+
         private UserModel _selectedUser;
 
         private Server _server;
@@ -61,7 +63,6 @@ namespace JavaProject___Client.MVVM.ViewModel
 
         private void UserConnected()
         {
-            MessageBox.Show("Kullanıcı bağlanma isteği geldi");
             string username = _server.PacketReader.ReadMessage();
             string uid = _server.PacketReader.ReadMessage();
             var user = new UserModel
@@ -109,11 +110,6 @@ namespace JavaProject___Client.MVVM.ViewModel
                         FirstMessage = FirstMessage
                     });
                 });
-                if (_selectedUser != user)
-                {
-                    System.Media.SoundPlayer player = new System.Media.SoundPlayer("./Sounds/notification.wav");
-                    player.Play();
-                }
             }
         }
 
@@ -164,6 +160,8 @@ namespace JavaProject___Client.MVVM.ViewModel
         }
         public RelayCommand SendMessageCommand { get; set; }
 
+        public RelayCommand NavigateToHome { get; set; }
+
         public HomeViewModelUsers(INavigationService navService, IDataService dataservice)
         {
             
@@ -171,6 +169,13 @@ namespace JavaProject___Client.MVVM.ViewModel
             Navigation = navService;
             _server = dataservice.server;
             Username = dataservice.Username;
+            UID = dataservice.UID;
+
+            NavigateToHome = new RelayCommand(o =>
+            {
+                Navigation.NavigateTo<HomeViewModelTweet>();
+            });
+
             SendMessageCommand = new RelayCommand(o =>
             {
                 if (!string.IsNullOrEmpty(Message))

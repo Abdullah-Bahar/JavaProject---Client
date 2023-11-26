@@ -9,7 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="MVVM\View\home.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Localizr.Extensions.Microsoft.DependencyInjection" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="MVVM\View\home.png" />
   </ItemGroup>
 
 </Project>

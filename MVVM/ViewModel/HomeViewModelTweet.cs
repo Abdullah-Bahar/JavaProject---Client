@@ -37,26 +37,12 @@ namespace JavaProject___Client.MVVM.ViewModel
 
         public RelayCommand NavigateToHomeUser {get; set;}
 
-        private void UserConnected()
-        {
-            string username = _server.PacketReader.ReadMessage();
-            string uid = _server.PacketReader.ReadMessage();
-            MessageBox.Show("Tweet sayfasından kod geldi");
-        }
-
-
         public HomeViewModelTweet(INavigationService navService, IDataService dataservice)
         {
             DataService = dataservice;
             Navigation = navService;
             _server = dataservice.server;
-            
-            dataservice.Users = new ObservableCollection<UserModel>();
-            dataservice.Messages = new ObservableCollection<MessageModel>();
-            dataservice.Tweets = new ObservableCollection<TweetModel>();
 
-            dataservice.SetUsername(dataservice.server.Username);
-            dataservice.SetUID(dataservice.server.UID);
             Username = dataservice.Username;
             UID = dataservice.UID;
 
@@ -65,6 +51,7 @@ namespace JavaProject___Client.MVVM.ViewModel
             {
                 Navigation.NavigateTo<HomeViewModelUsers>();
             });
+
 
         }
     }

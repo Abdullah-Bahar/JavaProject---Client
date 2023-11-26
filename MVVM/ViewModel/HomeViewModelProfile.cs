@@ -1,6 +1,8 @@
-﻿using JavaProject___Client.Services;
+﻿using JavaProject___Client.MVVM.Model;
+using JavaProject___Client.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,11 @@ namespace JavaProject___Client.MVVM.ViewModel
         {
             DataService = dataservice;
             Navigation = navService;
+            dataservice.Username = dataservice.server.Username;
+            dataservice.UID = dataservice.server.UID;
+            dataservice.Users = new ObservableCollection<UserModel>();
+            dataservice.Messages = new ObservableCollection<MessageModel>();
+            dataservice.Tweets = new ObservableCollection<TweetModel>();
         }
     }
 }
