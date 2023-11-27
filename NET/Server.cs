@@ -45,7 +45,7 @@ namespace JavaProject___Client.NET
             {
                 try
                 {
-                    _client.Connect("46.31.77.173", 9001);//46.31.77.173
+                    _client.Connect("127.0.0.1", 9001);//46.31.77.173
                 }
                 catch
                 {
@@ -71,7 +71,7 @@ namespace JavaProject___Client.NET
             {
                 try
                 {
-                    _client.Connect("46.31.77.173", 9001);//46.31.77.173
+                    _client.Connect("127.0.0.1", 9001);//46.31.77.173
                 }
                 catch
                 {

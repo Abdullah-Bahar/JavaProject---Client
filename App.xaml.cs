@@ -40,6 +40,7 @@ namespace JavaProject___Client
 
             services.AddSingleton<Func<Type, ViewModel>>(serviceProvider => viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));
             _serviceProvider = services.BuildServiceProvider(); 
+
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -47,6 +48,7 @@ namespace JavaProject___Client
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
             base.OnStartup(e);
+                        
         }
     }
 }

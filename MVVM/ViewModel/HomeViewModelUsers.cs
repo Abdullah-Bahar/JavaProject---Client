@@ -5,6 +5,7 @@ using JavaProject___Client.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,6 +66,7 @@ namespace JavaProject___Client.MVVM.ViewModel
         {
             string username = _server.PacketReader.ReadMessage();
             string uid = _server.PacketReader.ReadMessage();
+            string messageCount = _server.PacketReader.ReadMessage();
             var user = new UserModel
             {
                 Username = username,
@@ -72,14 +74,53 @@ namespace JavaProject___Client.MVVM.ViewModel
                 UID = uid,
                 Messages = new ObservableCollection<MessageModel>()
             };
-            user.Messages.Add(new MessageModel()
+            string dataUsername = "";
+            string dataUID = "";
+            string dataImageSource = "";
+            string dataMessage = "";
+            DateTime dataTime = DateTime.Now;
+            bool dataFirstMessage = true;
+            for (int i = 0; i < int.Parse(messageCount); i++)
             {
-                Username = username,
-                ImageSource = "",
-                Message = username + " çevrimiçi oldu",
-                Time = DateTime.Now,
-                FirstMessage = true
-            });
+                try
+                {
+                    dataUsername = _server.PacketReader.ReadMessage();
+                    dataUID = _server.PacketReader.ReadMessage();
+                    dataImageSource = _server.PacketReader.ReadMessage();
+                    dataMessage = _server.PacketReader.ReadMessage();
+                    dataTime = DateTime.Parse(_server.PacketReader.ReadMessage());
+                    dataFirstMessage = bool.Parse(_server.PacketReader.ReadMessage());
+                    if (dataUsername != null)
+                    {
+                        user.Messages.Add(new MessageModel()
+                        {
+                            Username = dataUsername,
+                            ImageSource = "",
+                            UsernameColor = "CornflowerBlue",
+                            Message = dataMessage,
+                            Time = dataTime,
+                            FirstMessage = dataFirstMessage
+                        });
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+            if (dataUsername == "")
+            {
+                user.Messages.Add(new MessageModel()
+                {
+                    Username = "ChatApp",
+                    ImageSource = "",
+                    UsernameColor = "CornflowerBlue",
+                    Message = username + " Çevrimiçi oldu",
+                    Time = DateTime.Now,
+                    FirstMessage = true
+                });
+            }
             if (!DataService.Users.Any(x => x.UID == user.UID))
             {
                 Application.Current.Dispatcher.Invoke(() => DataService.Users.Add(user));
@@ -105,6 +146,7 @@ namespace JavaProject___Client.MVVM.ViewModel
                     {
                         Username = username,
                         ImageSource = "",
+                        UsernameColor = "CornflowerBlue",
                         Message = msg,
                         Time = DateTime.Now,
                         FirstMessage = FirstMessage
@@ -142,6 +184,7 @@ namespace JavaProject___Client.MVVM.ViewModel
             {
                 Username = groupName,
                 ImageSource = "",
+                UsernameColor = "CornflowerBlue",
                 Message = "Uye Listesi: " + string.Join(" ", usernames),
                 Time = DateTime.Now,
                 FirstMessage = true
@@ -153,10 +196,10 @@ namespace JavaProject___Client.MVVM.ViewModel
         {
             var uid = _server.PacketReader.ReadMessage();
             var user = DataService.Users.FirstOrDefault(x => x.UID == uid);
-            if (user != null)
-            {
-                Application.Current.Dispatcher.Invoke(() => DataService.Users.Remove(user));
-            }
+            //if (user != null)
+            //{
+            //    Application.Current.Dispatcher.Invoke(() => DataService.Users.Remove(user));
+            //}
         }
         public RelayCommand SendMessageCommand { get; set; }
 
@@ -191,6 +234,7 @@ namespace JavaProject___Client.MVVM.ViewModel
                         {
                             Username = dataservice.Username,
                             ImageSource = "",
+                            UsernameColor = "CornflowerBlue",
                             Message = Message,
                             Time = DateTime.Now,
                             FirstMessage = FirstMessage

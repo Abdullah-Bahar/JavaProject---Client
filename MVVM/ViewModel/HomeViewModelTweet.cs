@@ -42,7 +42,6 @@ namespace JavaProject___Client.MVVM.ViewModel
             DataService = dataservice;
             Navigation = navService;
             _server = dataservice.server;
-
             Username = dataservice.Username;
             UID = dataservice.UID;
 
