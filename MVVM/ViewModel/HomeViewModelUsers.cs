@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace JavaProject___Client.MVVM.ViewModel
@@ -46,8 +48,11 @@ namespace JavaProject___Client.MVVM.ViewModel
             }
             set
             {
+
                 _selectedUser = value;
+                
                 OnPropertyChanged();
+                
             }
         }
 

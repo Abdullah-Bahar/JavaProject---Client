@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="MVVM\View\chat.png" />
     <None Remove="MVVM\View\home.png" />
   </ItemGroup>
 
@@ -17,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="MVVM\View\chat.png" />
     <Resource Include="MVVM\View\home.png" />
   </ItemGroup>
 

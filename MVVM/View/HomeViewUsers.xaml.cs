@@ -23,6 +23,19 @@ namespace JavaProject___Client.MVVM.View
         public HomeViewUsers()
         {
             InitializeComponent();
+            Users.SelectionChanged += Users_SelectionChanged;
         }
+
+        private void Users_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Users.SelectedItem != null)
+            {
+                if (sohbet.Items.Count > 0)
+                {
+                    sohbet.ScrollIntoView(sohbet.Items[sohbet.Items.Count - 1]);
+                }
+            }
+        }
+
     }
 }

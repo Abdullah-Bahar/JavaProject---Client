@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="JavaProject" Height="650" Width="1200"
         WindowStyle="None"
+        Background="Transparent"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip">
     <Grid>
@@ -16,8 +17,10 @@
 
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border Grid.ColumnSpan="2"
+        <Border
+            Grid.ColumnSpan="2"
             Background="#252525"
+                CornerRadius="15,15,0,0"
                 MouseDown="Border_MouseDown">
 
             <Grid HorizontalAlignment="Stretch">
@@ -58,7 +61,11 @@
         <Grid 
             Background ="#2F3136"
             Grid.Row ="1">
-            <ContentControl Content="{Binding Navigation.CurrentView}"/>
-            </Grid>
-       </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="13*"/>
+            </Grid.ColumnDefinitions>
+            <ContentControl Content="{Binding Navigation.CurrentView}" Grid.ColumnSpan="2"/>
+        </Grid>
+    </Grid>
 </Window>

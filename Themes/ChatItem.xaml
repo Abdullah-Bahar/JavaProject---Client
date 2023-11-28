@@ -41,7 +41,6 @@
                            FontWeight="Medium"
                            Margin="30,-2,0,-2"/>
                 </StackPanel>
-                
             </ControlTemplate>
         </Style.Resources>
 
