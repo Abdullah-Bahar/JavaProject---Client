@@ -21,6 +21,7 @@ namespace JavaProject___Client.NET
         public event Action UserDisconnectedEvent;
         public event Action MessageReceivedEvent;
         public event Action GroupCreatedEvent;
+        public event Action DeleteMessageEvent;
 
         public event Action LoginCorrectEvent;
         public event Action LoginFailEvent;
@@ -45,7 +46,7 @@ namespace JavaProject___Client.NET
             {
                 try
                 {
-                    _client.Connect("127.0.0.1", 9001);//46.31.77.173
+                    _client.Connect("46.31.77.173", 9001);//46.31.77.173
                 }
                 catch
                 {
@@ -71,7 +72,7 @@ namespace JavaProject___Client.NET
             {
                 try
                 {
-                    _client.Connect("127.0.0.1", 9001);//46.31.77.173
+                    _client.Connect("46.31.77.173", 9001);//46.31.77.173
                 }
                 catch
                 {
@@ -95,6 +96,7 @@ namespace JavaProject___Client.NET
         //4 - Disconnect
         //5 - Message - Group Message
         //6 - Group Created
+        //7 - Delete Message
 
 
         //Sunucudan gelen paketleri okumak için kullanılan fonksiyon
@@ -155,6 +157,9 @@ namespace JavaProject___Client.NET
                             case 6:
                                 GroupCreatedEvent?.Invoke();
                                 break;
+                            case 7:
+                                DeleteMessageEvent?.Invoke();
+                                break;
                             default:
                                 Console.WriteLine("Unknown opcode: " + opcode);
                                 break;
@@ -178,13 +183,23 @@ namespace JavaProject___Client.NET
             packet.WriteMessage(clientIDS);
             _client.Client.Send(packet.GetPacketBytes());
         }
-        public void SendMessage(string message, string contactUID, string firstMessage)
+        public void SendMessage(string message, string contactUID, string firstMessage, string messageUID)
         {
             var packet = new PacketBuilder();
             packet.WriteOpCode(5);
             packet.WriteMessage(message);
             packet.WriteMessage(contactUID);
             packet.WriteMessage(firstMessage);
+            packet.WriteMessage(messageUID);
+            _client.Client.Send(packet.GetPacketBytes());
+        }
+
+        public void DeleteMessage(string UID, string contactUID)
+        {
+            var packet = new PacketBuilder();
+            packet.WriteOpCode(7);
+            packet.WriteMessage(UID);
+            packet.WriteMessage(contactUID);
             _client.Client.Send(packet.GetPacketBytes());
         }
     }

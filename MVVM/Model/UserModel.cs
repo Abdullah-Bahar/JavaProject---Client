@@ -14,6 +14,6 @@ namespace JavaProject___Client.MVVM.Model
         public List<UserModel> Friends { get; set; }
         public string ImageSource { get; set; }
         public ObservableCollection<MessageModel> Messages { get; set; }
-        public MessageModel LastMessage => Messages.Last();
+        public MessageModel LastMessage => Messages.Last() ;
     }
 }

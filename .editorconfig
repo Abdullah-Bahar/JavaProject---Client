@@ -11,3 +11,6 @@ dotnet_diagnostic.CS8767.severity = none
 
 # CS8625: Null sabit değer, boş değer atanamayan başvuru türüne dönüştürülemiyor.
 dotnet_diagnostic.CS8625.severity = none
+
+# CS8604: Olası null başvuru bağımsız değişkeni.
+dotnet_diagnostic.CS8604.severity = none
