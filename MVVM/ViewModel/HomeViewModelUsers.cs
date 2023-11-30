@@ -269,7 +269,7 @@ namespace JavaProject___Client.MVVM.ViewModel
                             Random random = new Random();
                             int messageUID = random.Next(100000000, 999999999);
                             bool FirstMessage = false;
-                            if (_selectedUser.LastMessage != null)
+                            if (_selectedUser.Messages.Count > 0)
                             {
                                 if (_selectedUser.LastMessage.Username != dataservice.Username)
                                 {
