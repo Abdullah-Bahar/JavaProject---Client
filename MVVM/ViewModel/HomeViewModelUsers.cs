@@ -2,12 +2,16 @@
 using JavaProject___Client.MVVM.Model;
 using JavaProject___Client.NET;
 using JavaProject___Client.Services;
+using JavaProject___Server.NET.IO;
+using Microsoft.VisualBasic.ApplicationServices;
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,10 +40,9 @@ namespace JavaProject___Client.MVVM.ViewModel
 
         public string UID { get; set; }
 
-        private UserModel _selectedUser;
-
         private Server _server;
 
+        private UserModel _selectedUser;
         public UserModel SelectedUser
         {
             get
@@ -53,7 +56,16 @@ namespace JavaProject___Client.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-
+        private bool _microphone;
+        public bool Microphone
+        {
+            get { return _microphone; }
+            set
+            {
+                _microphone = value;
+                OnPropertyChanged();
+            }
+        }
         private string _message;
         public string Message
         {
@@ -152,7 +164,7 @@ namespace JavaProject___Client.MVVM.ViewModel
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     bool FirstMessage = false;
-                    if(user.LastMessage != null)
+                    if(user.Messages.Count > 0)
                     {
                         if (user.LastMessage.Username != username)
                         {
@@ -303,7 +315,6 @@ namespace JavaProject___Client.MVVM.ViewModel
                 _server.UserDisconnectedEvent += UserDisconnected;
                 _server.GroupCreatedEvent += createGroup;
                 _server.DeleteMessageEvent += deleteMessage;
-
         }
     }
 }

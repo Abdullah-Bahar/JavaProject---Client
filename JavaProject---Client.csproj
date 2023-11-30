@@ -10,16 +10,23 @@
 
   <ItemGroup>
     <None Remove="MVVM\View\chat.png" />
+    <None Remove="MVVM\View\deleteMessage.png" />
     <None Remove="MVVM\View\home.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Localizr.Extensions.Microsoft.DependencyInjection" Version="1.1.0" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="MVVM\View\chat.png" />
+    <Resource Include="MVVM\View\deleteMessage.png" />
     <Resource Include="MVVM\View\home.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MVVM\Mediator\" />
   </ItemGroup>
 
 </Project>

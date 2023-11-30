@@ -1,5 +1,7 @@
 ﻿using JavaProject___Server.NET.IO;
 using Microsoft.Win32;
+using NAudio.CoreAudioApi;
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,7 @@ namespace JavaProject___Client.NET
         public event Action MessageReceivedEvent;
         public event Action GroupCreatedEvent;
         public event Action DeleteMessageEvent;
+        public event Action MicMutedEvent;
 
         public event Action LoginCorrectEvent;
         public event Action LoginFailEvent;
@@ -33,6 +36,7 @@ namespace JavaProject___Client.NET
         public string UID;
 
         private static TcpClient _client = new TcpClient();
+
         public PacketReader PacketReader;
         public Server()
         {
@@ -46,7 +50,7 @@ namespace JavaProject___Client.NET
             {
                 try
                 {
-                    _client.Connect("46.31.77.173", 9001);//46.31.77.173
+                    _client.Connect("127.0.0.1", 9001);//46.31.77.173
                 }
                 catch
                 {
@@ -72,7 +76,7 @@ namespace JavaProject___Client.NET
             {
                 try
                 {
-                    _client.Connect("46.31.77.173", 9001);//46.31.77.173
+                    _client.Connect("127.0.0.1", 9001);//46.31.77.173
                 }
                 catch
                 {
@@ -159,6 +163,9 @@ namespace JavaProject___Client.NET
                                 break;
                             case 7:
                                 DeleteMessageEvent?.Invoke();
+                                break;
+                            case 8:
+                                MicMutedEvent?.Invoke();
                                 break;
                             default:
                                 Console.WriteLine("Unknown opcode: " + opcode);

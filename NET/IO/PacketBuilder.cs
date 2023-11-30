@@ -11,6 +11,7 @@ namespace JavaProject___Server.NET.IO
     public class PacketBuilder
     {
         MemoryStream _ms;
+        private object locker = new object();
         public PacketBuilder()
         {
             _ms = new MemoryStream();
@@ -18,16 +19,21 @@ namespace JavaProject___Server.NET.IO
 
         public void WriteOpCode(byte opcode)
         {
-            _ms.WriteByte(opcode);
+            lock (locker)
+            {
+                _ms.WriteByte(opcode);
+            }
         }
         public void WriteMessage(string msg)
         {
 
-            byte[] messageBytes = Encoding.UTF8.GetBytes(msg);
-            byte[] lengthBytes = BitConverter.GetBytes(messageBytes.Length);
-            _ms.Write(lengthBytes, 0, lengthBytes.Length);  
-            _ms.Write(messageBytes, 0, messageBytes.Length);
-
+            lock (locker)
+            {
+                byte[] messageBytes = Encoding.UTF8.GetBytes(msg);
+                byte[] lengthBytes = BitConverter.GetBytes(messageBytes.Length);
+                _ms.Write(lengthBytes, 0, lengthBytes.Length);
+                _ms.Write(messageBytes, 0, messageBytes.Length);
+            }
             //byte[] buff = BitConverter.GetBytes(msg.Length);
             //_ms.Write(buff, 0, buff.Length);
             //_ms.Write(Encoding.ASCII.GetBytes(msg), 0, msg.Length);
@@ -36,7 +42,39 @@ namespace JavaProject___Server.NET.IO
 
         public byte[] GetPacketBytes()
         {
-            return _ms.ToArray();
+            lock (locker)
+            {
+                var result = _ms.ToArray();
+
+                Task.Run(() =>
+                {
+                    Clear(_ms);
+                });
+
+                return result;
+            }
         }
+        public void Clear(MemoryStream source)
+        {
+            lock (locker)
+            {
+                byte[] buffer = source.GetBuffer();
+                Array.Clear(buffer, 0, buffer.Length);
+                source.Position = 0;
+                source.SetLength(0);
+            }
+        }
+        public void WriteAudioMessage(byte[] msg, int startingIndex, int bytesRecorded)
+        {
+            lock (locker)
+            {
+                var msgLength = msg.Length;
+
+                _ms.Write(BitConverter.GetBytes(msgLength), 0, BitConverter.GetBytes(msg.Length).Length);
+
+                _ms.Write(msg, 0, bytesRecorded);
+            }
+        }
+
     }
 }
